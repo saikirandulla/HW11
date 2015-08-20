@@ -8,20 +8,20 @@
 ###############################################################################
 # Write f01 that prints "Hello World!" and calls f02. (three lines)
 def f01():
-
+	print "Hello World!"
     f02()
 ###############################################################################
 # Write f02 that sets the variables x, y, and z equal to the words 
 # necessary to have the f03 print "i love python!" (five lines)
-
-
-
-
+def f02():
+	x = "i"
+	y = "love"
+	z = "python"
     f03(x,y,z)  # Last line in f2()
 ###############################################################################
 # Finish f03 (replace the ????). 
 def f03(*words):
-    truth = " ".???(words)  # This is broken.
+    truth = " ".join(words)  # This is broken.
     truth_emphasized = truth + "!"
     print truth_emphasized
     f04(truth)  # Last line in f03()
@@ -29,7 +29,8 @@ def f03(*words):
 # Write f04 that prints truth backwards (edit one line only)
 # Ex. f4("Littlest Bear") prints "raeB tselttiL"
 def f04(string):
-    
+    string ="Littlest Bear"[::-1]
+	print string
     f05(string)  # Last line in f04()
 ###############################################################################
 # Write f05 that for each char in a word passed as a parameter, prints that 
@@ -41,11 +42,9 @@ def f04(string):
 #   Info
 #    Info
 def f05(word):
-
-
-
-
-
+	word = "Info"
+	for i in range (0,5):
+		print '\t'* i + word
     f06("South Hall", "Python Rocks!")  # Last line in f05()
 ###############################################################################
 # Write f06 that takes two strings:
@@ -59,13 +58,18 @@ def f05(word):
 # 'longer_string' is longer than 'short_string' by 1 chars
 # 'short_string' has only 92.31% the number of chars of longer_string
 def f06(string1, string2):
-
-
-
-
-
-
-
+	string1 = "Python"
+	string2 = "Java"
+	diff = len(string1) - len(string2)
+	
+	if diff > 0:
+		percentage = (len(string2)/(len(string1)*1.00))*100
+		print ("{0} is longer than {1} by {2} chars".format(string1,string2,diff))
+		print ("{0} has only {1} the number of chars of {2}".format(string2,percentage,string1))
+	else:
+		percentage = (len(string1)/(len(string2)*1.00))*100
+		print ("{0} is longer than {1} by {2} chars".format(string2,string1,diff))
+		print ("{0} has only {1} the number of chars of {2}".format(string1,percentage,string2))
 
     various_solutions()  # Last line in f06()
 ###############################################################################
@@ -97,32 +101,50 @@ def various_solutions():
     f12()
 ###############################################################################
 def f07():
-    
+    sum = 0
+	i = 0
+	while i <= 500:
+		if (i% 5 == 0 or i% 3 == 0 or (i% 3 == 0 and i%5 == 0)):
+			sum +=i
+			i +=1
+		else:
+			i +=1
+	print sum
 
 
 
 ###############################################################################
 def f08():
-    
+    sum = 0
+	for i in range(1,500):
+		if (i% 5 == 0 or i% 3 == 0 or (i% 3 == 0 and i%5 == 0)):
+			sum +=i
+	print sum
+	
 
 
 
 ###############################################################################
 def f09():
-    
-
+    sum = 0
+	sum = sum + i if (i% 5 == 0 or i% 3 == 0 or (i% 3 == 0 and i%5 == 0)) for i in range(1,500)
+	print sum
+	
+	
 
 
 
 
 ###############################################################################
-def f10():
+def f10(i):
+ 	if (((i%3 == 0) or (i%5 == 0) or ((i%3 == 0) and (i%5 == 0))) and i <= 500):
+		sum += f10(i - 1)	
+	elif i <= 500:
+		i -= 1
+		f10(i-1)
+	return sum
 
-
-
-
-
-
+print f10(500)
 
 
 ###############################################################################
@@ -130,7 +152,14 @@ def f10():
 # strings, integers if they started as floats, and as the value 0 if they
 # started as ints.
 def f11(args):
-    
+	if type(args) == str:
+		args1 = float(args)
+	elif type(args) == float:
+		args1 = int(args)
+	elif type(args) == int:
+		args1 = 0
+	print type(args1)
+
 
 
 
@@ -148,17 +177,24 @@ def f11(args):
 # Ex. printing
 #   [1.0, 1.3, 2.443]
 def f12():
-    
-
-
-
-
-
+    with open("log_file.txt","w") as fout:
+	while True:
+		input_ = raw_input()
+		if input_ == "done":
+			break
+		else:
+			input_flist=[]
+			try:
+				input_float = float(input_)
+				input_flist.append(input_float)
+			except:
+				fout.write(input_+"\r\n")
+					
     f13()  # Last line in f12()
 ###############################################################################
 # Fix the error in f13:
 def f13():
-    for each in "string"
+    for each in "string":
         print each
     f14()  # Last line in f13()
 ###############################################################################
@@ -199,11 +235,18 @@ def f15():
 # each list sharing a tuple.
 # Ex.
 # [1,2,3] and [4,5,6] would produce [(1, 4), (2, 5), (3, 6)]
+# [1,2,3] and [4,5,6] would produce [(1, 4), (2, 5), (3, 6)]
 def f16(list1, list2):
-    
+	list_tuple = []
+	for item in list1:
+		for iter in list2:
+			x = (item,iter)
+			list_tuple = list_tuple.append(x)
+	
+	print list_tuple
 
-
-
+f16([1,2,3],[4,5,6])  # Last line in f15()
+   
 
 
     f17()  # Last line in f16()
@@ -306,10 +349,7 @@ def main():
 
 
 
-
-
-
-
 # Write the boilerplate code. (two lines)
-
+if __name__ == '__main__':
+    main()
 
